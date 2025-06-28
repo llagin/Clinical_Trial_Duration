@@ -1,15 +1,6 @@
-# TrialDura: Hierarchical Attention Transformer for Interpretable Clinical Trial Duration Prediction
+# TrialPred: an interpretability model based on multimodal data for predicting the duration of clinical trials
 
-[![arXiv](https://img.shields.io/badge/arXiv-2404.13235-b31b1b.svg)](https://arxiv.org/abs/2404.13235)
-
-Congratulations! This paper has been accepted at the 2024 NeurIPS workshop!
-
-## Overview
-
-TrialDura is a hierarchical attention transformer model designed for interpretable clinical trial duration prediction. This repository contains the code and instructions to reproduce the results presented in our paper.
-
-![Overview](overview.png)
-
+TrialPred strengthens data cleaning and feature expansion, using cross-attention to capture modal associations. This repository contains the code and instructions to reproduce the results presented in our paper.
 
 
 ## Installation
@@ -23,7 +14,8 @@ pip install rdkit
 pip install tqdm scikit-learn seaborn numpy pandas icd10-cm
 conda install pytorch==1.13.1 torchvision==0.14.1 torchaudio==0.13.1 pytorch-cuda=11.7 -c pytorch -c nvidia
 conda install conda-forge::transformers
-pip install tensorboard
+pip install tensorboard h5py umap-learn
+pip install transformers icd10 requests shap torch_lr_finder
 conda install lightgbm
 conda install xgboost
 ```
@@ -87,25 +79,22 @@ Note that this process is computationally intensive and may take some time. It i
 
 ```bash
 python preprocess/protocol_encode.py
+python preprocess/drug_disease_encode.py
+python preprocess/icdcode_encode.py
+python preprocess/smiless_encode.py
+python preprocess/text_encode.py
+python preprocess/time_frame_encode.py
 ```
 
 ## Model Training
 
 Run the notebook `model/run_NN.ipynb`.
 
+## Shap Analysis
+
+Running `SHAP.py` and `SHAP_plot.py` allows you to view the beeswarm plot of the trained model.
+
 ## Visualization
 
 You can visualize the results using TensorBoard. The logs are located under the `logs/` directory.
 
-## Citation
-
-If you find this repository useful in your research, please cite our paper:
-
-```bibtex
-@article{yue2024trialdura,
-  title={TrialDura: Hierarchical Attention Transformer for Interpretable Clinical Trial Duration Prediction},
-  author={Yue, Ling and Li, Jonathan and Islam, Md Zabirul and Xia, Bolun and Fu, Tianfan and Chen, Jintai},
-  journal={arXiv preprint arXiv:2404.13235},
-  year={2024}
-}
-```
