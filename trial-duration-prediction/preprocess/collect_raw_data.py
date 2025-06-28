@@ -84,11 +84,6 @@ def nctid2label_dict():
 
 nctid2label = nctid2label_dict()
 
-def get_time(times):
-	# for t in times:
-
-	pass
-
 def root2outcome(root):
 	result_list = []
 	walkData(root, prefix = '', result_list = result_list) 
@@ -216,7 +211,6 @@ def xml_file_2_tuple(xml_file):
 			intervention_model = '00000'
 	except:
 		intervention_model = '00000'
-	# intervention_model = '[' + intervention_model + ']'
 	# print(intervention_model)
 	try:
 		# masking
@@ -243,7 +237,6 @@ def xml_file_2_tuple(xml_file):
 		masking = care_provider+investigator+outcomes_assessor+participant
 	except:
 		masking = '0000'
-	# masking = '[' + masking + ']'
 
 
 	try:
@@ -264,7 +257,7 @@ def xml_file_2_tuple(xml_file):
 		if list(outcomes)==0:
 			time_frames = []
 		else:
-			# time_frame = get_time(outcomes) # 单位为day
+			# time_frame = get_time(outcomes) # day
 			time_frames = outcomes
 	except:
 		time_frames = []
@@ -302,7 +295,7 @@ def process_all():
 				 'criteria', 'title', 'summary','enrollment', 'number_of_location',
 				 'intervention_model', 'masking', 'primary_purpose', 'time_frame'
 				 ]
-	num_noninterventional, num_biologics = 0, 0, # 记录非干预和非药物治疗的数量
+	num_noninterventional, num_biologics = 0, 0, # record the number of non-intervention and non-pharmaceutical treatments
 	num_nodrug = 0 
 	num_nolabel = 0 
 	num_nodisease = 0 
@@ -370,7 +363,7 @@ def process_all():
 			# 	title+='.'
 				# exit()
 
-			# 创建字典数据
+			# create dictionary data
 			data_row = {
 				'nctid': nctid,
 				'status': status,
@@ -410,8 +403,8 @@ def process_all():
 
 
 
-## write csv file
-# 生成raw_data
+## write csv file 
+# generate raw_data
 """
 ({'nctid':nctid, \
  'status': status, \
