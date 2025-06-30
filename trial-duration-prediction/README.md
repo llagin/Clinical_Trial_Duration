@@ -16,6 +16,7 @@ conda install pytorch==1.13.1 torchvision==0.14.1 torchaudio==0.13.1 pytorch-cud
 conda install conda-forge::transformers
 pip install tensorboard h5py umap-learn
 pip install transformers icd10 requests shap torch_lr_finder
+pip install h5py
 conda install lightgbm
 conda install xgboost
 ```
@@ -67,11 +68,11 @@ python preprocess/collect_raw_data.py | tee data_process.log
 python preprocess/collect_input_data.py
 ```
 
-### Data Split
+<!-- ### Data Split
 
 ```bash
 python preprocess/data_split.py
-```
+``` -->
 
 ### Sentence to Embedding
 
@@ -84,15 +85,16 @@ python preprocess/icdcode_encode.py
 python preprocess/smiless_encode.py
 python preprocess/text_encode.py
 python preprocess/time_frame_encode.py
+python preprocess/encode.py
 ```
 
 ## Model Training
 
-Run the notebook `model/run_NN.ipynb`.
+Run the notebook `model/run_NN.py`.
 
-## Shap Analysis
+## Captum Analysis
 
-Running `SHAP.py` and `SHAP_plot.py` allows you to view the beeswarm plot of the trained model.
+Running `captum_test.py` and `global_contribution.py` allows you to view the beeswarm plot of the trained model.
 
 ## Visualization
 
